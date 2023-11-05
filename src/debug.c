@@ -9,7 +9,8 @@
 #include "util.h"
 #include "debug.h"
 #include "platform/platform.h"
-#ifdef __unix__
+
+#if defined(__unix__) || defined(__APPLE__)
 #include "platform/unix.h"
 #endif
 
@@ -23,7 +24,7 @@ static int init_log()
 {
     // Determine log path
     char log_file_path[MAX_PATH_CHARS + 1];
-#ifdef __unix__
+#if defined(__unix__) || defined(__APPLE__)
     char log_file_directory[MAX_PATH_CHARS + 1];
     join_paths(log_file_directory, sizeof(log_file_directory), 4, getenv("HOME"), ".local", "share", EXECUTABLE_TITLE);
     make_directory(log_file_directory);
@@ -35,7 +36,7 @@ static int init_log()
     // Open log
     log_file = fopen(log_file_path, "wb");
     if (log_file == NULL) {
-#ifdef __unix__
+#if defined(__unix__) || defined(__APPLE__)
         printf("Failed to create log file");
 #endif
         quit(EXIT_FAILURE);
@@ -44,7 +45,7 @@ print_version(log_file);
 fputs("\n", log_file);
 print_compiler_info(log_file);
 fputs("\n", log_file);
-#ifdef __unix__
+#if defined(__unix__) || defined(__APPLE__)
     if (config.debug)
         printf("Debug mode enabled\nLog is outputted to %s\n", log_file_path);
 #endif
@@ -71,7 +72,7 @@ void output_log(LogLevel log_level, const char *format, ...)
     if (config.debug)
         fflush(log_file);
     
-#ifdef __unix__
+#if defined(__unix__) || defined(__APPLE__)
     if (log_level > LOGLEVEL_DEBUG)
         fputs(buffer, stderr);
 #endif

@@ -15,8 +15,8 @@ void scmd_shutdown(void);
 void scmd_restart(void);
 void scmd_sleep(void);
 
-// Linux-specific function prototypes
-#ifdef __unix__
+// Apple and Linux-specific function prototypes
+#if defined(__unix__) || defined(__APPLE__)
 void make_directory(const char *directory);
 void print_usage(void);
 #endif
