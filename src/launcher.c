@@ -195,13 +195,11 @@ static void init_sdl()
     // Set flags, hints
     Uint32 sdl_flags = SDL_INIT_VIDEO;
     
-// Intereres with 4K Video - commented out - FIXME: Remove later
-//#ifdef __unix__
-//    SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
-//    setenv("SDL_VIDEODRIVER", "wayland,x11", 0);
-//#endif
+#if defined(__unix__) || defined(__APPLE__)
+   SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "1");
+#endif
     
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "3");
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER, config.inhibit_os_screensaver ? "0" : "1");
     if (config.gamepad_enabled)
         sdl_flags |= SDL_INIT_GAMECONTROLLER;
@@ -211,8 +209,15 @@ static void init_sdl()
         log_fatal("Could not initialize SDL\n%s", SDL_GetError());
 
     SDL_GetDesktopDisplayMode(0, &display_mode);
+    
+#if defined(__APPLE__)
+    geo.screen_width = display_mode.w * 2;
+    geo.screen_height = display_mode.h * 2;
+#else
     geo.screen_width = display_mode.w;
     geo.screen_height = display_mode.h;
+#endif
+    
     refresh_period = 1000 / (Uint32) display_mode.refresh_rate;
     geo.screen_margin = (int) (SCREEN_MARGIN * (float) geo.screen_height);
 }
@@ -225,12 +230,14 @@ static void create_window()
                  SDL_WINDOWPOS_UNDEFINED,
                  0,
                  0,
-                 SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_BORDERLESS
-             );
+                 SDL_WINDOW_MOUSE_CAPTURE |
+                 SDL_WINDOW_FULLSCREEN_DESKTOP |
+                 SDL_WINDOW_ALLOW_HIGHDPI |
+                 SDL_WINDOW_OPENGL);
     if (window == NULL)
         log_fatal("Could not create SDL Window\n%s", SDL_GetError());
     SDL_ShowCursor(SDL_DISABLE);
-
+    
     // Create HW accelerated renderer, get screen resolution for geometry calculations
     Uint32 renderer_flags = SDL_RENDERER_ACCELERATED;
     if (!config.vsync) {

@@ -396,11 +396,11 @@ int load_font(TextInfo *info, const char *default_font)
         const char *prefixes[2];
         char fonts_exe_buffer[MAX_PATH_CHARS + 1];
         prefixes[0] = join_paths(fonts_exe_buffer, sizeof(fonts_exe_buffer), 3, config.exe_path, PATH_ASSETS_EXE, PATH_FONTS_EXE);
-#if defined(__unix__) || defined(__APPLE__)
+    #if defined(__unix__) || defined(__APPLE__)
         prefixes[1] = PATH_FONTS_SYSTEM;
-#else
+    #else
         prefixes[1] = PATH_FONTS_RELATIVE;
-#endif
+    #endif
         char *default_font_path = find_file(default_font, 2, prefixes);
 
         // Replace user font with default in config

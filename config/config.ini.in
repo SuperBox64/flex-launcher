@@ -116,13 +116,14 @@ Hotkey1=#1B;:quit
 @SETTING_GAMEPAD_BUTTON_DPAD_RIGHT@=:right
 
 # Menu configurations
-[@DEFAULT_MENU@]
-Entry1=Kodi;@ICONS_PREFIX@kodi.png;@CMD_KODI@
-Entry2=Plex;@ICONS_PREFIX@plex.png;@CMD_PLEX@
-Entry3=@TITLE_GAMES@;@ICONS_PREFIX@@ICON_GAMES@;@CMD_GAMES@
-Entry4=System;@ICONS_PREFIX@system.png;:submenu System
+[Main]
+Entry1=Arcade;@ICONS_PREFIX@AtariArcade.png;gtk-launch AtariArcade
+Entry2=Console;@ICONS_PREFIX@AtariConsole.png;gtk-launch AtariConsole
+Entry3=Stella;@ICONS_PREFIX@stella.png;gtk-launch stella
+Entry4=Big PEmu;@ICONS_PREFIX@BigPEmu.png;gtk-launch bigpemu
+#Entry5=System;@ICONS_PREFIX@system.png;:submenu System
 
 [System]
-Entry1=Shutdown;@ICONS_PREFIX@system.png;:shutdown
-Entry2=Restart;@ICONS_PREFIX@restart.png;:restart
-Entry3=Sleep;@ICONS_PREFIX@sleep.png;:sleep
+#Entry1=Shutdown;@ICONS_PREFIX@system.png;:shutdown
+#Entry2=Restart;@ICONS_PREFIX@restart.png;:restart
+#Entry3=Sleep;/@ICONS_PREFIX@sleep.png;:sleep
