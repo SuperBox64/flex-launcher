@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libplatform.a CMakeFiles/platform.dir/unix.c.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libplatform.a
