@@ -8,7 +8,7 @@
 
 // Default filenames and paths
 #define FILENAME_DEFAULT_CONFIG "config.ini"
-#define FILENAME_DEFAULT_FONT "OpenSans-Regular.ttf"
+#define FILENAME_DEFAULT_FONT "SF-Atarian-System.ttf"
 #define FILENAME_DEFAULT_CLOCK_FONT "@DEFAULT_CLOCK_FONT@"
 #define FILENAME_LOG "@EXECUTABLE_TITLE@.log"
 #define PATH_ASSETS_EXE "assets"
