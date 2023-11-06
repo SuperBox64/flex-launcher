@@ -195,22 +195,20 @@ int xrelDistance =  100;
 // A function to initialize SDL
 static void init_sdl()
 {
-    // Set flags, hints
-    Uint32 sdl_flags = SDL_INIT_VIDEO;
     
+    SDL_Init(SDL_INIT_VIDEO);
+
+    if (config.gamepad_enabled) {
+        SDL_Init(SDL_INIT_JOYSTICK);
+    }
+    
+    // Set flags, hints
 #if defined(__unix__) || defined(__APPLE__)
- //  SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
+    //SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
 #endif
     
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "3");
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER, config.inhibit_os_screensaver ? "0" : "1");
-    if (config.gamepad_enabled)
-        sdl_flags |= SDL_INIT_GAMECONTROLLER;
-    
-    // Initialize SDL
-    if (SDL_Init(sdl_flags) < 0)
-        log_fatal("Could not initialize SDL\n%s", SDL_GetError());
-    
     SDL_GetDesktopDisplayMode(0, &display_mode);
     
 #if defined(__APPLE__)
@@ -237,13 +235,20 @@ static void create_window()
                               SDL_WINDOW_MOUSE_CAPTURE |
                               SDL_WINDOW_FULLSCREEN_DESKTOP |
                               SDL_WINDOW_ALLOW_HIGHDPI |
+                              
+                        #if defined(__APPLE__)
                               SDL_WINDOW_METAL
+                        #else
+                              SDL_WINDOW_OPENGL
+                        #endif
+        
                               );
     
     if (window == NULL)
         log_fatal("Could not create SDL Window\n%s", SDL_GetError());
     SDL_ShowCursor(SDL_DISABLE);
-    
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+
     // Create HW accelerated renderer, get screen resolution for geometry calculations
     Uint32 renderer_flags = SDL_RENDERER_ACCELERATED;
     if (!config.vsync) {
@@ -891,7 +896,12 @@ static void execute_command(const char *command)
 // A function to initialize the gamepad struct
 static void init_gamepad(Gamepad **gamepad, int device_index)
 {
+    
+    
+
     *gamepad = malloc(sizeof(Gamepad));
+    
+
     **gamepad = (Gamepad) {
         .device_index = device_index,
         .id = (int) SDL_JoystickGetDeviceInstanceID(device_index),
@@ -904,6 +914,8 @@ static void init_gamepad(Gamepad **gamepad, int device_index)
 // A function to open the SDL controller
 static void open_controller(Gamepad *gamepad, bool raise_error)
 {
+    
+
     gamepad->controller = SDL_GameControllerOpen(gamepad->device_index);
     if (gamepad->controller == NULL) {
         if (raise_error)
@@ -920,6 +932,7 @@ static void open_controller(Gamepad *gamepad, bool raise_error)
 // A function to connect gamepad(s)
 static void connect_gamepad(int device_index, bool open, bool raise_error)
 {
+    
     if (device_index >= 0) {
         Gamepad *gamepad = NULL;
         for (gamepad = gamepads; gamepad != NULL; gamepad = gamepad->next) {
@@ -1225,9 +1238,7 @@ void print_version(FILE *stream)
 
 int main(int argc, char *argv[])
 {
-    
-    cleanup();
-    
+
     int error;
     char *config_file_path = NULL;
     config.exe_path = SDL_GetBasePath();
@@ -1237,7 +1248,7 @@ int main(int argc, char *argv[])
     
     // Parse config file for settings and menu entries
     parse_config_file(config_file_path);
-    free(config_file_path);
+    //free(config_file_path);
     
     // Get default menu
     if (config.default_menu == NULL)
@@ -1264,6 +1275,7 @@ int main(int argc, char *argv[])
     ticks.main = SDL_GetTicks();
     ticks.last_input = ticks.main;
     
+
     // Load gamepad overrides
     if (config.gamepad_enabled && config.gamepad_mappings_file != NULL) {
         error = SDL_GameControllerAddMappingsFromFile(config.gamepad_mappings_file);
@@ -1368,6 +1380,10 @@ int main(int argc, char *argv[])
     if (config.startup_cmd != NULL)
         execute_command(config.startup_cmd);
     
+      
+    SDL_Delay(50);
+   // SDL_Init(SDL_INIT_JOYSTICK);
+
     // Main program loop
     log_debug("Begin program loop");
     while (1) {
@@ -1391,7 +1407,10 @@ int main(int argc, char *argv[])
                     break;
                     
                 case SDL_JOYDEVICEADDED:
+
+
                     if (SDL_IsGameController(event.jdevice.which) == SDL_TRUE) {
+
                         log_debug("Gamepad connected with device index %i", event.jdevice.which);
                         if (config.gamepad_device < 0 || config.gamepad_device == event.jdevice.which)
                             connect_gamepad(event.jdevice.which, !state.application_running, true);
@@ -1445,8 +1464,6 @@ int main(int argc, char *argv[])
 #endif
                     }
                     else if (event.window.event == SDL_WINDOWEVENT_FOCUS_GAINED) {
-                        SDL_SetRelativeMouseMode(SDL_TRUE);
-
                         log_debug("Gained keyboard focus");
                         state.has_focus = true;
                     }
@@ -1490,5 +1507,7 @@ int main(int argc, char *argv[])
         else
             draw_screen();
     }
+    
+
     quit(EXIT_SUCCESS);
 }

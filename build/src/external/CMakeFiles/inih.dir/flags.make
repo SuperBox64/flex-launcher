@@ -6,7 +6,7 @@ C_DEFINES =
 
 C_INCLUDES = -I/Users/toddbruss/Documents/GitHub/flex-launcher/build
 
-C_FLAGSarm64 =  -O2 -s -O3 -DNDEBUG -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
+C_FLAGSarm64 =  -O2 -s -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
 
-C_FLAGS =  -O2 -s -O3 -DNDEBUG -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
+C_FLAGS =  -O2 -s -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
 
