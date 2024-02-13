@@ -3,11 +3,11 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
-#include <SDL.h>
-#include <SDL_syswm.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <SDL_thread.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_syswm.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_thread.h>
 #include "launcher.h"
 #include <launcher_config.h>
 #include "image.h"
