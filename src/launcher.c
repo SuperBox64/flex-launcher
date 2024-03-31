@@ -212,8 +212,8 @@ static void init_sdl()
     SDL_GetDesktopDisplayMode(0, &display_mode);
     
 #if defined(__APPLE__)
-    geo.screen_width = display_mode.w * 2;
-    geo.screen_height = display_mode.h * 2;
+    geo.screen_width = display_mode.w ; //* 2;
+    geo.screen_height = display_mode.h ; //* 2;
 #else
     geo.screen_width = display_mode.w;
     geo.screen_height = display_mode.h;
@@ -234,7 +234,7 @@ static void create_window()
                               
                               SDL_WINDOW_MOUSE_CAPTURE |
                               SDL_WINDOW_FULLSCREEN_DESKTOP |
-                              SDL_WINDOW_ALLOW_HIGHDPI |
+                             // SDL_WINDOW_ALLOW_HIGHDPI |
                               
                         #if defined(__APPLE__)
                               SDL_WINDOW_METAL
@@ -440,6 +440,10 @@ static void handle_keypress(SDL_Keysym *key)
         move_left();
     else if (key->sym == SDLK_RIGHT)
         move_right();
+    else if (key->sym == SDLK_UP)
+        execute_command(current_entry->cmd);
+    else if (key->sym == SDLK_DOWN) 
+        load_back_menu(current_menu);
     else if (key->sym == SDLK_RETURN) {
         log_debug("Selected Entry:\n"
                   "Title: %s\n"
@@ -1400,11 +1404,22 @@ int main(int argc, char *argv[])
                     break;
                     
                 case SDL_MOUSEBUTTONDOWN:
-                    if (config.mouse_select && event.button.button == SDL_BUTTON_LEFT) {
-                        ticks.last_input = ticks.main;
-                        execute_command(current_entry->cmd);
-                    }
-                    break;
+                    if (config.mouse_select) {
+                      ticks.last_input = ticks.main;
+    
+                    switch (event.button.button) {
+                      case SDL_BUTTON_LEFT:
+                      execute_command(current_entry->cmd);
+                      break;
+                    
+                    case SDL_BUTTON_MIDDLE:
+                      execute_command(config.quit_cmd);
+                      break;
+                    case SDL_BUTTON_RIGHT:
+                      load_back_menu(current_menu);
+                      break;
+    }
+}
                     
                 case SDL_JOYDEVICEADDED:
 

@@ -19,9 +19,9 @@ This page contains tips for setting up Flex Launcher, and HTPCs in general. The 
 Make that you are generally familiar with the [configuration options](https://complexlogic.github.io/flex-launcher/configuration) as well.
 
 ## Selecting Menu Icons
-Transparency is essential for menu icons. Therefore, you should not use JPEG images for icons, since the JPEG format does not support transparency. Use PNG or WebP instead. PNG icons for most popular applications are easily found online in common sizes up to 512x512.
+Transparency is essential for menu icons. Therefore, you should not use JPEG images for icons, since the JPEG format does not support transparency. Use PNG or WebP instead. PNG icons for most popular applications are easily found online in common sizes up to 256x256.
 
-Any icon that is not the same resolution as the `IconSize` setting in your config file will be stretched. If your `IconSize` setting is not a common icon resolution (e.g. 512), then it is advisable to find SVG icons instead. However, Flex Launcher does not currently support SVGs for menu icons, so you will need to rasterize them into PNG or WebP using a tool such as [Inkscape](https://inkscape.org/). An example command can quickly rasterize an SVG into your desired resolution:
+Any icon that is not the same resolution as the `IconSize` setting in your config file will be stretched. If your `IconSize` setting is not a common icon resolution (e.g. 256), then it is advisable to find SVG icons instead. However, Flex Launcher does not currently support SVGs for menu icons, so you will need to rasterize them into PNG or WebP using a tool such as [Inkscape](https://inkscape.org/). An example command can quickly rasterize an SVG into your desired resolution:
 ```Shell
 inkscape --export-width=<width> --export-type=png /path/to/file.svg
 ```

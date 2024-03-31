@@ -206,15 +206,12 @@ endif ()
 # Set paths for config files
 set(FONT_PREFIX "${PROJECT_BINARY_DIR}/assets/fonts/")
 set(ICONS_PREFIX "${PROJECT_BINARY_DIR}/assets/icons/")
-set(BKGDS_PREFIX "${PROJECT_BINARY_DIR}/assets/bkgds/")
-
 file(COPY "${PROJECT_SOURCE_DIR}/assets" DESTINATION ${PROJECT_BINARY_DIR})
 
 # Generate build config file
 if (WIN32)
   string(REPLACE "/" "\\" FONT_PREFIX ${FONT_PREFIX})
   string(REPLACE "/" "\\" ICONS_PREFIX ${ICONS_PREFIX})
-  string(REPLACE "/" "\\" BKGDS_PREFIX ${BKGDS_PREFIX})
 endif ()
 configure_file("${PROJECT_SOURCE_DIR}/config/config.ini.in" "${PROJECT_BINARY_DIR}/config.ini")
 
@@ -223,16 +220,13 @@ if (WIN32)
   set(PATH_ASSETS_RELATIVE "./assets")
   set(FONT_PREFIX "${PATH_ASSETS_RELATIVE}/fonts/")
   set(ICONS_PREFIX "${PATH_ASSETS_RELATIVE}/icons/")
-  set(BKGDS_PREFIX "${PATH_ASSETS_RELATIVE}/bkgds/")
 else ()
   set(FONT_PREFIX "${INSTALL_DIR_ASSETS}/assets/fonts/")
   set(ICONS_PREFIX "${INSTALL_DIR_ASSETS}/assets/icons/")
-  set(BKGDS_PREFIX "${INSTALL_DIR_ASSETS}/assets/bkgds/")
 endif ()
   
 if (WIN32)
   string(REPLACE "/" "\\" FONT_PREFIX ${FONT_PREFIX})
   string(REPLACE "/" "\\" ICONS_PREFIX ${ICONS_PREFIX})
-  string(REPLACE "/" "\\" BKGDS_PREFIX ${BKGDS_PREFIX})
 endif ()
 configure_file("${PROJECT_SOURCE_DIR}/config/config.ini.in" "${PROJECT_BINARY_DIR}/install/config.ini")

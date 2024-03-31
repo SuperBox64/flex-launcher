@@ -181,7 +181,7 @@ Default: 4
 ##### IconSize
 The width and height of icons on the screen in pixels. If an icon is not the same resolution, it will be stretched accordingly.
 
-Default: 512
+Default: 256
 
 ##### IconSpacing
 Distance between the menu entry icons, in pixels or percent of the screen width.
@@ -300,7 +300,7 @@ Default: 100%
 ##### CornerRadius
 Defines the corner radius of the highlight cursor, in pixels. A value of 0 will yield a plain rectangle. Increasing the value will yield a rounded rectangle with increasingly round corners. The value of `HighlightOutlineSize` must be 0, otherwise this setting will be ignored.
 
-Default: 90
+Default: 0
 
 ##### VPadding
 Defines the amount of vertical distance that the highlight cursor extends beyond the top and bottom of the menu entry icon, in pixels.
