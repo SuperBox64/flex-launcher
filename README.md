@@ -15,10 +15,12 @@ install macOS dependencies via homebrew:
 `brew install cmake libsdl2 libsdl2_image libsdl2_ttf pkg-config`
 
 mac build:
-```mkdir build && cd build
+```
+mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make
-`./flex-launcher```
+./flex-launcher
+```
 
 configure the config.ini file:
 `config.ini`
