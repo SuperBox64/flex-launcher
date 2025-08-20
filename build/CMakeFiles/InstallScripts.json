@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/toddbruss/Downloads/flex-launcher/build/cmake_install.cmake",
+		"/Users/toddbruss/Downloads/flex-launcher/build/src/cmake_install.cmake",
+		"/Users/toddbruss/Downloads/flex-launcher/build/src/external/cmake_install.cmake",
+		"/Users/toddbruss/Downloads/flex-launcher/build/src/platform/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

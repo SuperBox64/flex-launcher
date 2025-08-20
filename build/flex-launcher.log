@@ -1,0 +1,14 @@
+Flex Launcher version 2.1, using:
+  SDL       2.32.8
+  SDL_image 2.8.8
+  SDL_ttf   2.24.0
+
+Build date: Aug 19 2025
+Compiler:   GCC 4.2
+
+Could not initialize font from config file
+Could not load image /Users/toddbruss/Downloads/flex-launcher/build/assets/bkgds/starmap4k.png
+Couldn't open /Users/toddbruss/Downloads/flex-launcher/build/assets/bkgds/starmap4k.png: No such file or directory
+Couldn't load background image, defaulting to color background
+Could not initialize font from config file
+Could not load default font
