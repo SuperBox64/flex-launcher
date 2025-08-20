@@ -11,6 +11,10 @@ Flex Launcher is programmed in C and optimized for ARM64 architectures with spec
 This Mac version demo screen features an early POC for SuperBox64OS:
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5a94b388-e2a4-4139-91ef-397347e61a79" />
 
+macOS Game Changer UI for comparision:
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/ceac2dc9-7e62-4acb-85ab-8c8b4fa55d2f" />
+
+
 install macOS dependencies via homebrew:
 ```
 brew install cmake libsdl2 libsdl2_image libsdl2_ttf pkg-config
