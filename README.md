@@ -8,7 +8,7 @@ SDL2 video changes support Metal graphics on macOS. The Mac version was used for
 
 Flex Launcher is programmed in C and optimized for ARM64 architectures with specialized gaming hardware support.
 
-Mac version demo screen:
+This Mac version demo screen features an early POC for SuperBox64OS:
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5a94b388-e2a4-4139-91ef-397347e61a79" />
 
 install macOS dependencies via homebrew:
