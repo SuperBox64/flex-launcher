@@ -12,7 +12,9 @@ Mac version demo screen:
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5a94b388-e2a4-4139-91ef-397347e61a79" />
 
 install macOS dependencies via homebrew:
-`brew install cmake libsdl2 libsdl2_image libsdl2_ttf pkg-config`
+```
+brew install cmake libsdl2 libsdl2_image libsdl2_ttf pkg-config
+```
 
 mac build:
 ```
@@ -23,8 +25,9 @@ make
 ```
 
 configure the config.ini file:
-`config.ini`
-
+```
+config.ini
+```
 
 <div align="center">
   <a>
