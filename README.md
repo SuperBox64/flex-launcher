@@ -34,12 +34,6 @@ SuperBox64 Website:
 https://superbox64.com
 ```
 
-<div align="center">
-  <a>
-    <img src="docs/flex-launcher.svg" alt="Logo" width="150" height="150">
-  </a>
-
-
 # Flex Launcher
 </div>
 <details open>
