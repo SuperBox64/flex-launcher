@@ -1,11 +1,28 @@
-This is a fork of Flex Launcher. It was adapted to macOS M1, M4 Arm64 and Raspberry Pi5 Arm64 Linux running SuperBox64OS. SuperBox64OS is based on Ubuntu 23.10, but its desktop and doc icons were redesigned to be more mac like.
+This is a fork of Flex Launcher adapted for macOS M1/M4 Arm64 and Raspberry Pi5 Arm64 Linux running SuperBox64OS. SuperBox64OS is based on Ubuntu 23.10 with redesigned desktop and dock icons for a Mac-like experience.
 
-Additions made by Todd Bruss:
-Added Arcade Spinner support plus enhanced Trackball and Classic Arcade game controller support. 
+Todd Bruss Additions:
+Added Arcade Spinner support plus enhanced Trackball and Classic Arcade game controller support. Flex Launcher serves as the primary Arcade game emulator launcher for SuperBox64OS.
 
-Flex Launcher is the primary Arcade game emulator launcher for SuperBox64OS. SDL2 video changes were made to support Metal graphics on macOS. The Mac version is used for development and testing for its Linux counterpart. Mac version ceased development after Linux was completed and a new native mac launcher was created in Swift called "Game Changer, elsewhere in this repo.
+Technical Notes:
+SDL2 video changes support Metal graphics on macOS. The Mac version was used for development and testing the Linux counterpart. Mac development ceased after Linux completion, with a new native Swift launcher called "Game Changer" created separately from scratch.
 
-Flex Launcher is programmed in C.
+Flex Launcher is programmed in C and optimized for ARM64 architectures with specialized gaming hardware support.
+
+Mac version demo screen:
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5a94b388-e2a4-4139-91ef-397347e61a79" />
+
+install macOS dependencies via homebrew:
+`brew install cmake libsdl2 libsdl2_image libsdl2_ttf pkg-config`
+
+mac build:
+`mkdir build && cd build`
+`cmake .. -DCMAKE_BUILD_TYPE=Release`
+`make`
+`./flex-launcher`
+
+configure the config.ini file:
+`config.ini`
+
 
 <div align="center">
   <a>
